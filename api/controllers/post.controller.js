@@ -2,21 +2,15 @@ import prisma from "../lib/prisma.js";
 
 export const addPost = async (req, res) => {
   const title = req.body.title[0];
-  const link = req.body.link[0];
-  const important = req.body.important[0];
   const uploadedFiles = req.files; // Access the uploaded file
 
   console.log(uploadedFiles);
   console.log(uploadedFiles.pdf[0].filename);
-  console.log(uploadedFiles.thumbnail[0].filename);
   try {
     await prisma.post.create({
       data: {
         title: title,
-        link: link,
-        important: important === "on" ? true : false,
         pdf: uploadedFiles.pdf[0].filename,
-        thumbnail: uploadedFiles.thumbnail[0].filename,
       },
     });
     res.status(200).json({ message: "Post Uploaded" });

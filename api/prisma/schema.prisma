@@ -17,8 +17,5 @@ model Post {
   postId    String   @id @default(auto()) @map("_id") @db.ObjectId
   title     String
   pdf       String
-  thumbnail String
-  link      String
-  important Boolean @default(true)
   createdAt DateTime @default(now())
 }

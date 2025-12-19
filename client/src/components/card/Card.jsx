@@ -28,14 +28,7 @@ const Card = ({ post }) => {
             {formatDistanceToNow(new Date(post.createdAt), { addSuffix: true })}
           </div>
           <div className="btns d-flex">
-            <a href={post.link} target="_blank" className="link">
-              <div className="btn me-2 primary-500 text-white d-flex flex-row align-items-center justify-content-center">
-                <span className="material-symbols-outlined me-1">
-                  play_circle
-                </span>
-                <span>Link</span>
-              </div>
-            </a>
+            
             <a target="_blank" href={`${url}${post.pdf}`} className="link">
               <div className="btn btn-secondary d-flex flex-row align-items-center justify-content-center">
                 <span className="material-symbols-outlined me-1">

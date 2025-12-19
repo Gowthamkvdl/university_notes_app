@@ -15,32 +15,14 @@ const NewPost = () => {
     const formData = new FormData(e.target);
     const title = formData.get("title").trim();
     const pdf = formData.get("pdf");
-    const thumbnail = formData.get("thumbnail");
-    const link = formData.get("link");
-    const important = formData.get("important");
 
     // Append title and link to formData
     formData.append("title", title);
-    formData.append("link", link);
-    formData.append("important", important)
 
-    console.log(title);
-    console.log(pdf);
-    console.log(thumbnail);
-    console.log(link);
 
     try {
-      const postResponse = await axios.post(
-        "https://staffprojectbackend.onrender.com/api/post/addPost",
-        formData, // Send formData directly
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        }
-      );
       // const postResponse = await axios.post(
-      //   "http://localhost:8080/api/post/addPost",
+      //   "https://staffprojectbackend.onrender.com/api/post/addPost",
       //   formData, // Send formData directly
       //   {
       //     headers: {
@@ -48,6 +30,15 @@ const NewPost = () => {
       //     },
       //   }
       // );
+      const postResponse = await axios.post(
+        "http://localhost:8080/api/post/addPost",
+        formData, // Send formData directly
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
       console.log(postResponse);
       setLoading(false);
       toast.success("Post created successfully");
@@ -76,15 +67,6 @@ const NewPost = () => {
           id="title"
           required
         />
-        <label htmlFor="thumbnail">Thumbnail Image</label>
-        <input
-          type="file"
-          name="thumbnail"
-          className="form-control shadow-none mb-2"
-          id="thumbnail"
-          accept="image/*"
-          required
-        />
         <label htmlFor="pdf">PDF</label>
         <input
           type="file"
@@ -94,22 +76,6 @@ const NewPost = () => {
           accept="application/pdf"
           required
         />
-        <label htmlFor="link">Video Link</label>
-        <input
-          type="text"
-          name="link"
-          className="form-control shadow-none mb-2"
-          id="link"
-        />
-        <div className="d-flex gap-2">
-          <input
-            type="checkbox"
-            name="important"
-            className="form-check form-check-xl"
-            id="important"
-          />
-          <label htmlFor="important">Important</label>
-        </div>
         <button
           className="uploadBtn btn btn-primary float-end mt-3"
           disabled={loading}

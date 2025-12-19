@@ -3,7 +3,6 @@ import cookieParser from "cookie-parser";
 import path from "path";
 import { fileURLToPath } from "url";
 import cors from "cors"; // Import CORS package
-import authRoute from "./routes/auth.route.js";
 import postRoute from "./routes/post.route.js";
 
 const PORT = 8080;
@@ -11,19 +10,19 @@ const PORT = 8080;
 const app = express();
 
 // Configure CORS
-// app.use(
-//   cors({
-//     origin: "http://localhost:5173", // Allow requests from your front-end
-//     credentials: true,
-//   })
-// );
-// Configure CORS
 app.use(
   cors({
-    origin: "https://staffproject.onrender.com", // Allow requests from your front-end
+    origin: "http://localhost:5173", // Allow requests from your front-end
     credentials: true,
   })
 );
+// Configure CORS
+// app.use(
+//   cors({
+//     origin: "https://staffproject.onrender.com", // Allow requests from your front-end
+//     credentials: true,
+//   })
+// );
 
 // Get the current file path
 const __filename = fileURLToPath(import.meta.url);
@@ -38,7 +37,6 @@ app.use(cookieParser());
 app.use("/pdfs", express.static(mediaPath));
 
 // Routes
-app.use("/api/auth", authRoute);
 app.use("/api/post", postRoute);
 
 // Start the server

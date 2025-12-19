@@ -21,11 +21,16 @@
 }
 
 .link{
-  text-decoration: none !important;
-  color: white !important;
+  text-decoration: none;
+}
+
+.nav-link{
+  color: rgb(255, 255, 255) !important;
 }
 
 .nav-link.active{
-  border-bottom: 3px solid var(--primary-100) !important;
-  margin-bottom: 2px;
+  background-color: rgb(255, 255, 255); 
+  margin: 2px;
+  color: rgb(26, 26, 26) !important;
+  border-radius: 10px;
 }
